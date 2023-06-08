@@ -11,12 +11,16 @@ globalThis.fs = require("fs");
 globalThis.TextEncoder = require("util").TextEncoder;
 globalThis.TextDecoder = require("util").TextDecoder;
 
-globalThis.performance = {
-	now() {
+if (!globalThis.performance) {
+	globalThis.performance = {}
+}
+
+if (!globalThis.performance.now) {
+	globalThis.performance.now = function() {
 		const [sec, nsec] = process.hrtime();
 		return sec * 1000 + nsec / 1000000;
-	},
-};
+	}
+}
 
 // Node >= 19 has a crypto function object, lower node versions need this polyfill
 if (!globalThis.crypto) { 

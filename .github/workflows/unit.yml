@@ -20,7 +20,7 @@ concurrency:
 jobs:
   unit-test:
     runs-on:
-      - linux
+      - ubuntu-latest
     container:
       image: docker.mirror.hashicorp.services/hashicorp/jsii-terraform
     env:
